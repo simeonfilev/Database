@@ -1,0 +1,22 @@
+import ./tables/salary.txt
+import ./tables/users.txt
+innerjoin users 1 salary 1
+showtables
+describe users
+print users
+select 2 700.00 salary
+addcolumn salary egn string
+update salary 1 1 3 123456789
+delete salary 1 13
+insert salary 14 -714.00
+rename salary salaries
+count salary 1 5
+aggregate salary 1 3 2 sum
+export salary ..//salaries.txt
+
+
+update salary 1 1 2 asd -> Invalid new update value. It should be:double
+export ss ..//salarries.txt -> Received invalid name of table
+addcolumn salary egn stringss -> received invalid col type
+describe userssss -> received invalid name of table
+count salary 10 2 - > received invalid index

@@ -1,0 +1,3 @@
+salary - ..//tables//salary.txt
+users - ..//tables//users.txt
+users_JOIN_salary_COL_1_AND_1 - ..//tables//users_JOIN_salary_COL_1_AND_1.txt

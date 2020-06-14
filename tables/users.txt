@@ -1,0 +1,14 @@
+users,int,string,int
+id,name,age
+1,"moni",20
+2,"viki",22
+3,"miki",23
+4,"tiki",20
+5,"fiki",22
+6,"giki",23
+7,"sisi",20
+8,"pisi",22
+9,"tisi",23
+10,"bisi",20
+11,"xixi",22
+12,"zizi",23

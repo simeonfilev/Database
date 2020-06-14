@@ -1,0 +1,6 @@
+import ./tables/salary.txt
+import ./tables/users.txt
+innerjoin users 1 salary 1
+showtables
+describe salary
+

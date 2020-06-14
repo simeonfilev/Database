@@ -1,0 +1,28 @@
+var class_command_parser =
+[
+    [ "addColumn", "class_command_parser.html#ad0d84766db8fd39ae26faa2b59c73121", null ],
+    [ "aggregateTable", "class_command_parser.html#a65806a615d11009c33efa26f745ebed7", null ],
+    [ "decodePath", "class_command_parser.html#a46ad3e1b68aa7c5c7f6997d095a0dd6a", null ],
+    [ "deleteValue", "class_command_parser.html#a4938db9c7bf1b8abab47a375050d4297", null ],
+    [ "descibeFieldsFromTable", "class_command_parser.html#a53ffe1829213ceb676ce662faabc667e", null ],
+    [ "encodePath", "class_command_parser.html#a58dcf11246a360e5b0dc8ac150bb0fc8", null ],
+    [ "execute", "class_command_parser.html#a5de8be28b1de9127f80625cbe1233472", null ],
+    [ "exportTable", "class_command_parser.html#ab9f0aa08cd130d8709c9d49d10274ea6", null ],
+    [ "getCommand", "class_command_parser.html#a189482a08f936fc699bc4100bff9a96b", null ],
+    [ "getCountOfValInCol", "class_command_parser.html#a59ac49d9df0a19946b489e771447a3e4", null ],
+    [ "getNumberOfSpaces", "class_command_parser.html#a4514db4dbe4b1b87a3cdecbf3d6c66a1", null ],
+    [ "getTableWithPath", "class_command_parser.html#aa71bd1d818d0dd3c9a76aeec87e6f7d3", null ],
+    [ "importTable", "class_command_parser.html#a2db84d850b5ba3dc6f77487bd6c4ae1b", null ],
+    [ "innerJoin", "class_command_parser.html#a07ff5b8192e8232850d1486488ca5ec8", null ],
+    [ "insertRow", "class_command_parser.html#a321dc53ed893655661351db6f50c2458", null ],
+    [ "openFile", "class_command_parser.html#a5ea8e0c26244251e4ad22097908a73fc", null ],
+    [ "printAllTables", "class_command_parser.html#af5f72ba457ec0108835a33232d854fe9", null ],
+    [ "printExitMsg", "class_command_parser.html#a0a722f8fcb16ffd57611190aa186391a", null ],
+    [ "printHelpMsg", "class_command_parser.html#a6ed726607266cb2298280a64e49824a6", null ],
+    [ "printRows", "class_command_parser.html#a02b81ceaf47bd1aa5e13e1d44c8e0f6c", null ],
+    [ "removeNewLines", "class_command_parser.html#a9c3891944c651d2b61c4402e7c211815", null ],
+    [ "renameTable", "class_command_parser.html#a4a2a4cb7ba95cc6ef022527de192ce93", null ],
+    [ "saveFile", "class_command_parser.html#a81cf1a7d229b821bc4b4825459184ee6", null ],
+    [ "selectValue", "class_command_parser.html#aa6bc56ede8b33e0a259235c7968275ff", null ],
+    [ "updateValue", "class_command_parser.html#a3bb407bab01b1e3b49717937100a7591", null ]
+];

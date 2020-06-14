@@ -37,7 +37,7 @@ Table::Table(const std::string &pathToFile) {
     }
     else std::cout << "Unable to open file";
 }
-
+//! splits a string into tokens by given delimeter
 std::vector<std::string> Table::splitLineByDelimeter(char delimeter, std::string line) {
     line = removeNewLines(line);
 
@@ -86,7 +86,7 @@ void Table::setPathToFile(const std::string &pathToFile) {
 void Table::insertRow(const std::string& row) {
     this->rows.push_back(row);
 }
-
+//! removes the new lines symbols by given line
 std::string Table::removeNewLines(const std::string& line) {
     std::string lineToChange = line;
     while ( line.find ("\r") != std::string::npos )
@@ -119,6 +119,7 @@ std::ostream &operator<<(std::ostream &out, const Table &table) {
     return out;
 }
 
+//! prints col by given col and value
 void Table::printSelectColByVal(int col,const std::string& value) {
     if(col> this->getTypes().size() || col<0){
         std::cout<<"Col out of bound"<<std::endl;
@@ -169,7 +170,7 @@ void Table::printSelectColByVal(int col,const std::string& value) {
     }
 
 }
-
+//! delete rows by given col and val
 void Table::deleteRowsByColValue(int col,const std::string& value) {
     std::vector<std::string> newTableRows;
 
@@ -216,6 +217,7 @@ void Table::deleteRowsByColValue(int col,const std::string& value) {
     this->setRows(newTableRows);
 }
 
+//! saves the table to the current file
 void Table::saveTableToCurrentFile() {
     std::ofstream myfile (this->getPathToFile());
     if (myfile.is_open())
@@ -224,7 +226,8 @@ void Table::saveTableToCurrentFile() {
         myfile.close();
     }
 }
-bool isInteger(std::string input){
+//! checks if a given string is an integer
+bool isInteger(const std::string& input){
    if(input.empty()){
        return false;
    }
@@ -242,7 +245,8 @@ bool isInteger(std::string input){
    }
    return true;
 }
-bool isDouble(std::string input){
+//! checks if a given string is a double
+bool isDouble(const std::string& input){
     int dotsCount =0;
     if(input.empty()){
         return false;
@@ -266,6 +270,7 @@ bool isDouble(std::string input){
     return  dotsCount == 1;
 }
 
+//! updates table values by given search col, search value, target col and the value we want
 void Table::updateTableVal(int searchCol,const std::string& searchVal, int targetCol,const std::string& valueToChange) {
     //check if index out of bound
     if(searchCol> this->getTypes().size() || searchCol<0
@@ -358,6 +363,7 @@ void Table::updateTableVal(int searchCol,const std::string& searchVal, int targe
     std::cout<<"Successfully updated value!"<<std::endl;
 }
 
+//! inswers a row into the table
 void Table::insertRowInTable(const std::string& columns) {
     std::vector<std::string> tokens = this->splitLineByDelimeter(' ',columns);
 
@@ -393,26 +399,29 @@ void Table::insertRowInTable(const std::string& columns) {
     std::cout<<"Successfully added row:"<<row<<"!"<<std::endl;
 }
 
+//! adds a row into the table by given string
 void Table::addRowInRows(const std::string& row) {
     this->rows.push_back(row);
 }
 
+//! changes the name of the table by given new name string
 void Table::changeName(const std::string& newName) {
     this->setTableName(newName);
 }
-
+//! inserts a col in the table by given name and type
 void Table::insertColInTable(const std::string& colName,const std::string& colType) {
     addColInCols(colName);
     addTypeToTypes(colType);
     addNullToTheEndOfEveryRow();
 }
 
+//! adds a NULL value to the end of all rows
 void Table:: addNullToTheEndOfEveryRow(){
     for(int i=0;i<this->getRows().size();i++){
         addValToTheEndOfRow(i,"NULL");
     }
 }
-
+//! adds a col in the table by given name
 void Table::addColInCols(const std::string& colName){
     std::vector<std::string> colNames = this->getColNames();
     for(int i=0;i<colNames.size();i++){
@@ -432,7 +441,7 @@ const std::vector<std::string> &Table::getColNames() const {
 void Table::setColNames(const std::vector<std::string> &colNames) {
     Table::colNames = colNames;
 }
-
+//! add the type to the end of types
 void Table::addTypeToTypes(const std::string& type) {
     if(type != "string"
        && type != "int"
@@ -441,7 +450,7 @@ void Table::addTypeToTypes(const std::string& type) {
     }
     this->types.push_back(type);
 }
-
+//! adds a value to the end of row
 void Table::addValToTheEndOfRow(int id,const std::string& value) {
     if(id<0 || id>this->getRows().size()){
         throw std::invalid_argument( "received invalid row" );
@@ -450,6 +459,8 @@ void Table::addValToTheEndOfRow(int id,const std::string& value) {
     this->rows[id] += ","+value;
 }
 
+
+//! Prints the number of occurences on given col index and value
 void Table::getCountOfValInCol(int index,const std::string& value) {
     if(index<0 || index>this->getTypes().size()){
         throw std::invalid_argument( "received invalid index" );
@@ -466,6 +477,7 @@ void Table::getCountOfValInCol(int index,const std::string& value) {
     std::cout<<"Number of occurrences: "<<counter<<std::endl;
 }
 
+//! Print rows on the table
 void Table::printRows() {
     int numberOfRowsOnOnePage = 10;
 
@@ -510,6 +522,7 @@ void Table::printRows() {
 
 }
 
+//! prints rows by given start index, end index and rows
 void Table::printFromStartIndexToEndIndex(int startIndex,int endIndex,const std::vector<std::string>& rows){
     if(startIndex<0){
         return;
@@ -527,6 +540,7 @@ void Table::printFromStartIndexToEndIndex(int startIndex,int endIndex,const std:
     std::cout<<"Showing from: "<<startIndex+1<<" to "<<startIndex+counter<<"! All: "<<rows.size()<<std::endl;
 }
 
+//! aggregate function by given search col, search val,
 void Table::aggregateOperations(int searchCol,const std::string& searchVal, int targetCol,const std::string& operation) {
     if(searchCol< 0
             || searchCol>this->getTypes().size()
@@ -600,7 +614,7 @@ void Table::aggregateOperations(int searchCol,const std::string& searchVal, int 
     }
 
 }
-
+//! prints types by given delimeter char
 void Table::printTypesByDelimeter(char del) {
     for(int i=0;i<this->getTypes().size()-1;i++){
         std::cout<<this->getTypes()[i]<<del;
@@ -608,6 +622,7 @@ void Table::printTypesByDelimeter(char del) {
     std::cout<<this->getTypes()[this->getTypes().size()-1]<<std::endl;
 }
 
+//! prints col names by given delimeter char
 void Table::printColNamesByDelimeter(char del) {
     for(int i=0;i<this->getColNames().size()-1;i++){
         std::cout<<this->getColNames()[i]<<del;

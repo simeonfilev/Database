@@ -5,7 +5,7 @@
 #include "../headers/Catalog.h"
 
 #include <iostream>
-#include <fstream>
+
 
 std::ostream &operator<<(std::ostream &out, Catalog &object) {
     std::map<std::string, std::string>::iterator it;
@@ -31,7 +31,7 @@ void Catalog::setCatalog(const std::map<std::string, std::string> &catalog) {
 Catalog::Catalog() {
 
 }
-
+//! adds a table in the catalog if it doesn't exists in the catalog
 void Catalog::insertTableInCatalog(const std::string& name,const std::string& path) {
     std::map<std::string, std::string>::iterator it = this->catalog.find(name);
     if (it != this->catalog.end()) {
@@ -41,7 +41,7 @@ void Catalog::insertTableInCatalog(const std::string& name,const std::string& pa
     this->catalog.insert(std::make_pair(name, path));
 }
 
-
+//! return a table by given table name if it exists
 Table Catalog::getTableByName(const std::string &name) {
     //check if exists
     if (this->catalog.find(name) == this->catalog.end()) {
@@ -51,6 +51,7 @@ Table Catalog::getTableByName(const std::string &name) {
     }
 }
 
+//! checks if a given table name exists in the catalog
 bool Catalog::tableExistsInCatalog(const std::string& tableName) {
     try {
         getTableByName(tableName);
@@ -59,7 +60,7 @@ bool Catalog::tableExistsInCatalog(const std::string& tableName) {
         return false;
     }
 }
-
+//! changes a table name by given old table name and new table name
 void Catalog::changeTableName(const std::string& oldName,const std::string& newName) {
     std::map<std::string, std::string>::iterator it = this->catalog.find(oldName);
 

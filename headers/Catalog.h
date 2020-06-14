@@ -10,6 +10,9 @@
 #include <map>
 #include "Table.h"
 
+/*! \class Catalog
+    \brief Клас който дефинира каталог (списък от таблици и имена на таблици)
+*/
 class Catalog {
 private:
     std::map<std::string, std::string> catalog;

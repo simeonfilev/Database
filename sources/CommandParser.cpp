@@ -33,6 +33,9 @@ enum Command {
 };
 
 
+/*! \class CommandParser
+    \brief Клас който се грижи за командите вместо main
+*/
 class CommandParser {
 
 public:
@@ -83,6 +86,7 @@ public:
 
     };
 
+    //! prints a help message
     void printHelpMsg() {
         std::cout << "The following commands are supported:\n"
                      "open <file> opens <file>\n"
@@ -93,10 +97,12 @@ public:
                      "exit exists the program" << std::endl;
     }
 
+    //! prints a exit message
     void printExitMsg() {
         std::cout << "Exiting the program..." << std::endl;
     }
 
+    //! returns the number of spaces
     int getNumberOfSpaces(const std::string& expression) {
         int counter = 0;
         for (int i = 0; i < expression.length(); i++) {
@@ -106,6 +112,7 @@ public:
         return counter;
     }
 
+    //! prints all tables in given catalog
     void printAllTables(Catalog catalog) {
         std::map<std::string, std::string> tables = catalog.getCatalog();
         int counter =0;
@@ -117,6 +124,7 @@ public:
 
     }
 
+    //! imports a table into the catalog
     void importTable(const std::string& expression, Catalog *Catalog) {
         //import {path} : EXAMPLE : import ./tables/users.txt
        try{
@@ -130,6 +138,7 @@ public:
 
     }
 
+    //! prints all fields in the given table
     void descibeFieldsFromTable( const std::string &tableName, Catalog *catalog) {
         try{
             Table t = catalog->getTableByName(tableName);
@@ -143,11 +152,13 @@ public:
 
     }
 
+    //! returns a table by given path
     Table getTableWithPath(std::string path) {
         Table *t = new Table(path);
         return *t;
     }
 
+    //! encodes a path
     std::string encodePath(std::string path) {
         std::string ans = "";
         int indexOfExtension = path.rfind('.');
@@ -160,6 +171,7 @@ public:
         return ans;
     }
 
+    //! decodes a path
     std::string decodePath(std::string path) {
         std::string ans = "";
         for (int i = 1; i < path.size(); i++) {
@@ -171,7 +183,7 @@ public:
         ans += path.at(path.size() - 1);
         return ans;
     }
-
+    //! exports a table to new file
     void exportTable(const std::string& text, Catalog *catalog) {
         std::string expression = text;
         std::string name = expression.substr(0, expression.find(' '));
@@ -190,6 +202,7 @@ public:
 
     }
 
+    //! prints a value from col
     void selectValue(const std::string& text, Catalog *catalog) {
         std::string expression = text;
         std::string colName = expression.substr(0, expression.find(' '));
@@ -210,6 +223,7 @@ public:
 
     }
 
+    //! removes a value
     void deleteValue(const std::string& text, Catalog *catalog) {
         std::string expression = text;
         std::string tableName = expression.substr(0, expression.find(' '));
@@ -229,6 +243,7 @@ public:
         }
     }
 
+    //! updates a value in the table
     void updateValue(const std::string& text, Catalog *catalog) {
         std::string expression = text;
         //update <table name> <search column n> <search value> <target column n> <target value>
@@ -256,6 +271,7 @@ public:
 
     }
 
+    //! insert new row
     void insertRow(const std::string& text, Catalog *catalog) {
         std::string expression = text;
         // insert <table name> <column 1> … <column n>
@@ -271,7 +287,7 @@ public:
         }
 
     }
-
+    //! renames a table
     void renameTable(const std::string& text, Catalog *catalog) {
         std::string expression = text;
         std::string oldTableName = expression.substr(0, expression.find(' '));
@@ -296,6 +312,7 @@ public:
         }
     }
 
+    //! add new col into the table
     void addColumn(const std::string& text, Catalog *catalog) {
         std::string expression = text;
         //addcolumn <table name> <column name> <column type>
@@ -316,7 +333,7 @@ public:
         }
 
     }
-
+    //! prints the number of occurences
     void getCountOfValInCol(const std::string& text, Catalog *catalog) {
         std::string expression = text;
         //count <table name> <search column n> <search value>
@@ -339,6 +356,7 @@ public:
 
     }
 
+    //! prints rows
     void printRows(const std::string& expression, Catalog *catalog) {
         std::string tableName = expression.substr(0);
         try {
@@ -348,7 +366,7 @@ public:
             std::cout << e.what() << std::endl;
         }
     }
-
+    //! aggregate function
     void aggregateTable(const std::string& text, Catalog *catalog) {
         std::string expression = text;
         // aggregate <table name> <search column n> <search value> <target column n> <operation>
@@ -384,7 +402,7 @@ public:
         }
 
     }
-
+    //! inner join
     void innerJoin(const std::string& text, Catalog *catalog) {
         std::string expression = text;
         // innerjoin <table 1> <column n1> <table 2> <column n2>
@@ -444,6 +462,7 @@ public:
         return line;
     }
 
+    //! executes given command
     void execute(std::string commandExpression,Catalog *catalog){
         std::string command = commandExpression;
         command = command.substr(0, commandExpression.find(' '));
